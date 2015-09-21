@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://www.vexflow.com/docs/tutorial.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>The Transposer</title>
+  <link href="font.css" rel="stylesheet" type="text/css">
+  <link href="style.css" media="screen" rel="Stylesheet" type="text/css">
+  <!-- VexFlow Compiled Source -->
+  <script src="vexflow-min.js"></script>
+  <!-- Support Sources -->
+  <script src="jquery-2.1.0.min.js"></script>
+  <script src="script.js"></script>
+  <style type="text/css">
+    canvas {
+      background: #eed;
+      padding: 10px;
+      border: 10px solid #ddc;
+	  cursor: pointer;
+    }
+	.message{
+		text-align:center;
+	}
+	select{
+		width: 150px;
+	}
+  </style>
+  <script>
+	$( document ).ready(function() {
+		var originalCanva = $("#original")[0];
+		var transposedCanva = $("#transposed")[0];
+		var originalKeySelector = $("#originalKeySelector");
+		var transposedKeySelector = $("#transposedKeySelector");
+		var originalKey = $("#originalKey");
+		var transposedKey = $("#transposedKey");
+		var transposer = new Transposer(originalCanva, transposedCanva, originalKeySelector, transposedKeySelector, originalKey, transposedKey);
+		$(document).keydown(function(e) {
+			switch(e.which) {
+				case 38: // up
+					transposer.updateKeyIndex(1);
+					break;
+				case 40: // down
+					transposer.updateKeyIndex(-1);
+					break;
+				default:
+					return; // exit this handler for other keys
+			}
+			e.preventDefault(); // prevent the default action (scroll / move caret)
+		});
+	});
+  </script>
+</head>
+<body>
+  <div class="header">
+    <h1>The Transposer</h1>
+    <div class="main">
+      <b>Let's transpose easily</b>
+    </div>Using <a href="http://www.vexflow.com/">VexFlow</a>.
+  </div>
+
+  <div class="content">
+	<p>Click on the upper top of the stave to add sharps and below to add flats.</p>
+    <h2>Original Key</h2>
+		<select id="originalKeySelector"></select>
+		</br>
+		</br>
+        <canvas id="original" width="600" height="120"></canvas>
+		<p class = "message" id="originalKey"></p>
+    <h2>Transposed Key</h2>
+		<select id="transposedKeySelector"/></select>
+		</br>
+		</br>
+        <canvas id="transposed" width="600" height="120"></canvas>
+		<p class ="message" id="transposedKey"></p>
+	</div>
+</body></html>
