@@ -120,7 +120,7 @@
 	var generatesScale = function(startingNoteIndex){
 		var notes = new Array(7);
 		startingNoteIndex = mod(startingNoteIndex  + 3,  7) - 3 ;
-		for (var i = 0; i < 7; i++){
+		for (var i = 0; i < 8; i++){
 			var j = startingNoteIndex + i;
 			var key = getArrayElement(Vex.Flow.Music.roots, j);
 			var scale = 4  + Math.floor(j / 7);
